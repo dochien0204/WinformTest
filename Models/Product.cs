@@ -6,7 +6,8 @@ namespace ProjectProduct.Models
 {
     public partial class Product
     {
-        [DisplayName("Product Id")]
+        [DisplayName("ID")]
+        [Browsable(false)]
         public decimal Id { get; set; }
         [DisplayName("Product Name")]
         public string Name { get; set; } = null!;

@@ -22,5 +22,10 @@ namespace ProjectProduct.Services
         {
             return productRepo.GetAll();
         }
+
+        public List<Product> GetListProductByName(string name)
+        {
+            return productRepo.GetProductsByName(name);
+        }
     }
 }

@@ -22,5 +22,13 @@ namespace ProjectProduct.Repository.Products
                 .OrderByDescending (p => p.Name)
                 .ToList();
         }
+
+        public List<Product> GetProductsByName(string name)
+        {
+            var products = context.Products
+                .Where(p => p.Name.Contains(name))
+                .ToList();
+            return products;
+        }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             tbSearch = new TextBox();
             label1 = new Label();
             dgProduct = new DataGridView();
@@ -40,10 +41,10 @@
             // 
             // tbSearch
             // 
-            tbSearch.Location = new Point(178, 29);
-            tbSearch.Multiline = true;
+            tbSearch.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            tbSearch.Location = new Point(178, 39);
             tbSearch.Name = "tbSearch";
-            tbSearch.Size = new Size(283, 52);
+            tbSearch.Size = new Size(283, 29);
             tbSearch.TabIndex = 0;
             // 
             // label1
@@ -58,9 +59,17 @@
             // 
             // dgProduct
             // 
+            dgProduct.AllowDrop = true;
             dgProduct.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgProduct.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgProduct.ColumnHeadersDefaultCellStyle.Font = new Font(DataGridView.DefaultFont, FontStyle.Bold);
             dgProduct.Location = new Point(41, 199);
             dgProduct.Name = "dgProduct";
             dgProduct.RowTemplate.Height = 30;
@@ -77,6 +86,7 @@
             btnSearch.TabIndex = 3;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
             // 
             // btnViewDetail
             // 

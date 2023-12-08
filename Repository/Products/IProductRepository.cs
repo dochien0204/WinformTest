@@ -10,5 +10,6 @@ namespace ProjectProduct.Repository.Products
     public interface IProductRepository
     {
         public List<Product> GetAll();
+        public List<Product> GetProductsByName(string name);
     }
 }

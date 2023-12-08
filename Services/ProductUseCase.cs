@@ -10,5 +10,6 @@ namespace ProjectProduct.Services
     public interface ProductUseCase
     {
         public List<Product> GetAll();
+        public List<Product> GetListProductByName(string name);
     }
 }
