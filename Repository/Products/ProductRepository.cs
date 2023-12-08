@@ -19,7 +19,7 @@ namespace ProjectProduct.Repository.Products
 
         public List<Product> GetAll() {
             return context.Products
-                .OrderBy (p => p.Name)
+                .OrderBy (p => p.Id)
                 .ToList();
         }
     }
