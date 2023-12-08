@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)grapecity.spread.winforms\14.0.0\build\net5.0-windows\GrapeCity.Spread.WinForms.targets" Condition="Exists('$(NuGetPackageRoot)grapecity.spread.winforms\14.0.0\build\net5.0-windows\GrapeCity.Spread.WinForms.targets')" />
+  </ImportGroup>
+</Project>
