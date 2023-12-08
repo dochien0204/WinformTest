@@ -92,3 +92,4 @@ D:\Winform-Project\ProjectProduct\bin\Debug\net6.0-windows\runtimes\win\lib\net6
 D:\Winform-Project\ProjectProduct\bin\Debug\net6.0-windows\runtimes\linux\lib\net6.0\System.DirectoryServices.Protocols.dll
 D:\Winform-Project\ProjectProduct\bin\Debug\net6.0-windows\runtimes\osx\lib\net6.0\System.DirectoryServices.Protocols.dll
 D:\Winform-Project\ProjectProduct\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.DirectoryServices.Protocols.dll
+D:\Winform-Project\ProjectProduct\obj\Debug\net6.0-windows\ProjectProduct.sourcelink.json
