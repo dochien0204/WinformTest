@@ -5,16 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectProduct.Controllers.Presenters
+namespace ProjectProduct.Controllers.Presenters.ListProduct
 {
     internal class ProductDataGridView
     {
         [DisplayName("No")]
-        public string Id { get;set; }
+        public decimal Id { get; set; }
         [DisplayName("Product Name")]
         public string Name { get; set; } = null!;
 
-        public ProductDataGridView(string id, string name)
+        public ProductDataGridView(decimal id, string name)
         {
             Id = id;
             Name = name;

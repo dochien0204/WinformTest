@@ -1,4 +1,4 @@
-﻿using ProjectProduct.Controllers.Presenters;
+﻿using ProjectProduct.Controllers.Presenters.ListProduct;
 using ProjectProduct.Controllers.UI;
 using ProjectProduct.Controllers.UI.Util;
 using ProjectProduct.Models;
@@ -152,14 +152,14 @@ namespace ProjectProduct
                         string[] cells = rowText.Trim().Split("\t");
                         if (cells.Length == columnCount)
                         {
-                            for(int i = 0; i < columnCount; i++)
+                            for (int i = 0; i < columnCount; i++)
                             {
                                 dgProduct.Rows[listIndexSelectedRow[i]].Cells[i].Value = cells[i];
                             }
                         }
                         else
                         {
-                            MessageBox.Show("Invalid data format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Helper.ShowErrorMessage("Invalid data format.");
                             break;
                         }
                     }
@@ -181,6 +181,31 @@ namespace ProjectProduct
             
         
          */
+        }
+
+        private void btnViewDetail_Click(object sender, EventArgs e)
+        {
+            if (dgProduct.SelectedRows.Count <= 0)
+            {
+                Helper.ShowErrorMessage("Cannot find selected row");
+                return;
+            } else if (dgProduct.SelectedRows.Count > 1)
+            {
+                Helper.ShowErrorMessage("You can only select one row in grid");
+                return;
+            } else
+            {
+                //Get Product Id from Seletec Row
+                string productId = dgProduct.SelectedRows[0].Cells[0].Value?.ToString() ?? "";
+                decimal productIdDecimal;
+                if (!decimal.TryParse(productId, out productIdDecimal))
+                {
+                    Helper.ShowErrorMessage("Failed to Parse ID's Product");
+                }
+                ProductDetail productDetailScreen = new ProductDetail(service, productIdDecimal);
+                productDetailScreen.Show();
+            }
+
         }
     }
 }

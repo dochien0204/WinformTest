@@ -27,5 +27,10 @@ namespace ProjectProduct.Services
         {
             return productRepo.GetProductsByName(name);
         }
+
+        public Product GetProductById(decimal id)
+        {
+            return productRepo.GetProductById(id);
+        }
     }
 }

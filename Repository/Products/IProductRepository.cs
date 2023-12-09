@@ -11,5 +11,6 @@ namespace ProjectProduct.Repository.Products
     {
         public List<Product> GetAll();
         public List<Product> GetProductsByName(string name);
+        public Product GetProductById(decimal id);
     }
 }
