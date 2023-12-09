@@ -1,5 +1,5 @@
 ﻿using GrapeCity.CalcEngine;
-using ProjectProduct.Controllers.Presenters;
+using ProjectProduct.Controllers.Presenters.ListProduct;
 using ProjectProduct.Models;
 using System;
 using System.Collections.Generic;
@@ -16,7 +16,7 @@ namespace ProjectProduct.Controllers.UI
             List<ProductDataGridView> listProductView = new List<ProductDataGridView>();
             foreach (Product product in products)
             {
-                ProductDataGridView productView = new ProductDataGridView(product.Id.ToString(), product.Name);
+                ProductDataGridView productView = new ProductDataGridView(product.Id, product.Name);
                 listProductView.Add(productView);
             }
 

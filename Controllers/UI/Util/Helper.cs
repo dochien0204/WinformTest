@@ -15,5 +15,25 @@ namespace ProjectProduct.Controllers.UI.Util
                 row.DefaultCellStyle.BackColor = Color.White;
             }
         }
+
+        public static void ShowErrorMessage(string message)
+        {
+            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public static void ShowInfoMessage(string message)
+        {
+            MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public static void ShowWarningMessage(string message)
+        {
+            MessageBox.Show(message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        public static DialogResult ShowYesNoQuestion(string message)
+        {
+            return MessageBox.Show(message, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        }
     }
 }

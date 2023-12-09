@@ -11,5 +11,6 @@ namespace ProjectProduct.Services
     {
         public List<Product> GetAll();
         public List<Product> GetListProductByName(string name);
+        public Product GetProductById(decimal id);
     }
 }

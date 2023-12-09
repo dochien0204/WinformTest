@@ -50,10 +50,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(41, 41);
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(62, 47);
             label1.Name = "label1";
-            label1.Size = new Size(121, 23);
+            label1.Size = new Size(110, 21);
             label1.TabIndex = 1;
             label1.Text = "Product Name";
             // 
@@ -73,6 +73,7 @@
             dgProduct.Location = new Point(41, 199);
             dgProduct.Name = "dgProduct";
             dgProduct.RowTemplate.Height = 30;
+            dgProduct.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgProduct.Size = new Size(794, 267);
             dgProduct.TabIndex = 2;
             dgProduct.CellContentClick += dgProduct_CellContentClick;
@@ -98,6 +99,7 @@
             btnViewDetail.TabIndex = 4;
             btnViewDetail.Text = "View Detail";
             btnViewDetail.UseVisualStyleBackColor = true;
+            btnViewDetail.Click += btnViewDetail_Click;
             // 
             // btnAdd
             // 

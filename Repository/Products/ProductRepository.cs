@@ -30,5 +30,11 @@ namespace ProjectProduct.Repository.Products
                 .ToList();
             return products;
         }
+
+        public Product GetProductById(decimal id) { 
+            var product = context.Products
+                .Single(p => p.Id == id);
+            return product;
+        }   
     }
 }
