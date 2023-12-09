@@ -10,12 +10,11 @@ namespace ProjectProduct.Controllers.Presenters
     internal class ProductDataGridView
     {
         [DisplayName("No")]
-        [Browsable(false)]
-        public decimal Id { get;set; }
+        public string Id { get;set; }
         [DisplayName("Product Name")]
         public string Name { get; set; } = null!;
 
-        public ProductDataGridView(decimal id, string name)
+        public ProductDataGridView(string id, string name)
         {
             Id = id;
             Name = name;

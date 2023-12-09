@@ -16,7 +16,7 @@ namespace ProjectProduct.Controllers.UI
             List<ProductDataGridView> listProductView = new List<ProductDataGridView>();
             foreach (Product product in products)
             {
-                ProductDataGridView productView = new ProductDataGridView(product.Id, product.Name);
+                ProductDataGridView productView = new ProductDataGridView(product.Id.ToString(), product.Name);
                 listProductView.Add(productView);
             }
 

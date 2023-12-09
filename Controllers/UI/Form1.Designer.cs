@@ -76,6 +76,7 @@
             dgProduct.Size = new Size(794, 267);
             dgProduct.TabIndex = 2;
             dgProduct.CellContentClick += dgProduct_CellContentClick;
+            dgProduct.SelectionChanged += dgProduct_SelectionChanged;
             // 
             // btnSearch
             // 
@@ -117,6 +118,7 @@
             btnClose.TabIndex = 6;
             btnClose.Text = "Close";
             btnClose.UseVisualStyleBackColor = true;
+            btnClose.Click += btnClose_Click;
             // 
             // Form1
             // 
