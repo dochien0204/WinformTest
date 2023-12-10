@@ -13,12 +13,10 @@ namespace ProjectProduct.Services.Products
     public class ProductService : ProductUseCase
     {
         private IProductRepository productRepo;
-        private IComponentRepository componentRepo;
 
-        public ProductService(IProductRepository productRepo, IComponentRepository componentRepo)
+        public ProductService(IProductRepository productRepo)
         {
             this.productRepo = productRepo;
-            this.componentRepo = componentRepo;
         }
 
         public List<Product> GetAll()
