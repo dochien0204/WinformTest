@@ -9,12 +9,15 @@ namespace ProjectProduct.Controllers.Presenters.ProductDetail
 {
     internal class ProductPresenter
     {
-        private decimal Id { get; set; }
-        private string Name { get; set; } = null!;
-        public ProductPresenter(decimal Id, string Name)
+        public decimal Id { get; set; }
+        public string Name { get; set; } = null!;
+        public List<ComponentPresenter> Components { get; set; }
+        public ProductPresenter(decimal Id, string Name, List<ComponentPresenter> components)
         {
             this.Id = Id;
             this.Name = Name;
+            this.Components = components;
         }
+
     }
 }

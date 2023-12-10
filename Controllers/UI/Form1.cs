@@ -2,7 +2,7 @@
 using ProjectProduct.Controllers.UI;
 using ProjectProduct.Controllers.UI.Util;
 using ProjectProduct.Models;
-using ProjectProduct.Services;
+using ProjectProduct.Services.Products;
 using System.ComponentModel;
 
 namespace ProjectProduct
@@ -45,11 +45,6 @@ namespace ProjectProduct
         private void btnSearch_Click(object sender, EventArgs e)
         {
             List<Product> listProductSearch = service.GetListProductByName(tbSearch.Text);
-            if (listProductSearch == null)
-            {
-                MessageBox.Show("Cannot find!", "Notification");
-            }
-
             dataGridView = new BindingList<ProductDataGridView>(Common.convertListProductToDataGridViewPresenter(listProductSearch));
             dgProduct.DataSource = dataGridView;
         }
@@ -60,11 +55,6 @@ namespace ProjectProduct
             if (e.KeyCode == Keys.Enter)
             {
                 List<Product> listProductSearch = service.GetListProductByName(tbSearch.Text);
-                if (listProductSearch == null)
-                {
-                    MessageBox.Show("Cannot find!", "Notification");
-                }
-
                 dataGridView = new BindingList<ProductDataGridView>(Common.convertListProductToDataGridViewPresenter(listProductSearch));
                 dgProduct.DataSource = dataGridView;
             }
@@ -91,54 +81,50 @@ namespace ProjectProduct
         //Action Copy
         private void copySelectedCellsToClipBoard()
         {
-            string listSelectedString = "";
             listIndexSelectedRow.Clear();
             foreach (DataGridViewRow r in dgProduct.SelectedRows.Cast<DataGridViewRow>().Reverse())
             {
                 listIndexSelectedRow.Add(r.Index);
-                listSelectedString += r.Index.ToString();
                 r.DefaultCellStyle.BackColor = Color.Yellow;
             }
 
-            MessageBox.Show("List selected: " + listSelectedString);
-            if (dgProduct.SelectedCells.Count > 0)
+            if (dgProduct.SelectedRows.Count > 0)
             {
                 //Tiền xử lý dữ liệu
                 System.Text.StringBuilder clipboardContent = new System.Text.StringBuilder();
-                int currentRowIndex = -1;
-                foreach (DataGridViewCell cell in dgProduct.SelectedCells)
+                foreach(DataGridViewRow row in dgProduct.SelectedRows)
                 {
-                    if (cell.RowIndex != currentRowIndex)
+                    int currentRowIndex = -1;
+                    foreach (DataGridViewCell cell in row.Cells)
                     {
-                        string id = dgProduct.Rows[cell.RowIndex].Cells[0].Value.ToString();
-                        // This is a new row, add a newline to separate from the previous row
-                        if (currentRowIndex != -1)
+                        if (cell.RowIndex != currentRowIndex)
                         {
-                            clipboardContent.AppendLine();
+                            // This is a new row, add a newline to separate from the previous row
+                            if (currentRowIndex != -1)
+                            {
+                                clipboardContent.AppendLine();
+                            }
+
+                            currentRowIndex = cell.RowIndex;
+                        }
+                        else
+                        {
+                            // This is the same row, add a tab to separate from the previous cell in the same row
+                            clipboardContent.Append('\t');
                         }
 
-                        currentRowIndex = cell.RowIndex;
+                        // Append cell value or an empty string if the cell value is null
+                        clipboardContent.Append(cell.Value?.ToString() ?? string.Empty);
                     }
-                    else
-                    {
-                        // This is the same row, add a tab to separate from the previous cell in the same row
-                        clipboardContent.Append('\t');
-                    }
-
-                    // Append cell value or an empty string if the cell value is null
-                    clipboardContent.Append(cell.Value?.ToString() ?? string.Empty);
                 }
-                clipboardContent.Length--;
                 Clipboard.SetText(clipboardContent.ToString());
-                MessageBox.Show("Copied Successfully", "Notification");
             }
         }
 
         private void pasteSelectedCellsToClipBoard()
         {
             //Message Box 
-            MessageBoxButtons choiceButton = MessageBoxButtons.YesNo;
-            DialogResult result = MessageBox.Show("Do you want to paste this content ?", "Question", choiceButton);
+            DialogResult result = Helper.ShowYesNoQuestion("Do you want to paste them into Datagrid View?");
             if (result == DialogResult.Yes)
             {
                 string clipboardContent = Clipboard.GetText();
@@ -147,6 +133,7 @@ namespace ProjectProduct
                     string[] rows = clipboardContent.Split('\n');
                     int columnCount = dgProduct.Columns.Count;
                     List<int> listIndex = listIndexSelectedRow;
+                    int index = 0;
                     foreach (string rowText in rows)
                     {
                         string[] cells = rowText.Trim().Split("\t");
@@ -154,7 +141,7 @@ namespace ProjectProduct
                         {
                             for (int i = 0; i < columnCount; i++)
                             {
-                                dgProduct.Rows[listIndexSelectedRow[i]].Cells[i].Value = cells[i];
+                                dgProduct.Rows[listIndexSelectedRow[index]].Cells[i].Value = cells[i];
                             }
                         }
                         else
@@ -162,6 +149,7 @@ namespace ProjectProduct
                             Helper.ShowErrorMessage("Invalid data format.");
                             break;
                         }
+                        index++;
                     }
                 }
             }

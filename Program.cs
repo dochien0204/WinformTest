@@ -1,8 +1,10 @@
 using Microsoft.Extensions.DependencyInjection;
 using Oracle.ManagedDataAccess.Client;
 using ProjectProduct.Models;
+using ProjectProduct.Repository.Components;
 using ProjectProduct.Repository.Products;
-using ProjectProduct.Services;
+using ProjectProduct.Services.Components;
+using ProjectProduct.Services.Products;
 
 namespace ProjectProduct
 {
@@ -18,7 +20,9 @@ namespace ProjectProduct
            var serviceProvider = new ServiceCollection()
                 .AddSingleton<ModelContext>()
                 .AddSingleton<IProductRepository, ProductRepository>()
+                .AddSingleton<IComponentRepository, ComponentRepository>()
                 .AddSingleton<ProductUseCase, ProductService>()
+                .AddSingleton<ComponentUseCase, ComponentService>()
                 .BuildServiceProvider();
 
             // see https://aka.ms/applicationconfiguration.

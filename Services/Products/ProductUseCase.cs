@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectProduct.Services
+namespace ProjectProduct.Services.Products
 {
     public interface ProductUseCase
     {

@@ -1,4 +1,5 @@
 ﻿using GrapeCity.CalcEngine;
+using Microsoft.EntityFrameworkCore;
 using ProjectProduct.Models;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,7 @@ namespace ProjectProduct.Repository.Products
 
         public Product GetProductById(decimal id) { 
             var product = context.Products
+                .Include(product => product.Components)
                 .Single(p => p.Id == id);
             return product;
         }   
