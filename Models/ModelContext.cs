@@ -16,6 +16,7 @@ namespace ProjectProduct.Models
         {
         }
 
+        public virtual DbSet<Component> Components { get; set; } = null!;
         public virtual DbSet<Product> Products { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -31,6 +32,30 @@ namespace ProjectProduct.Models
         {
             modelBuilder.HasDefaultSchema("WINFORM")
                 .UseCollation("USING_NLS_COMP");
+
+            modelBuilder.Entity<Component>(entity =>
+            {
+                entity.ToTable("COMPONENT");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("NUMBER(38)")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("ID");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("NAME");
+
+                entity.Property(e => e.ProductId)
+                    .HasColumnType("NUMBER(38)")
+                    .HasColumnName("PRODUCT_ID");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.Components)
+                    .HasForeignKey(d => d.ProductId)
+                    .HasConstraintName("FK_COMPONENT_PRODUCT");
+            });
 
             modelBuilder.Entity<Product>(entity =>
             {
